@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import '../styles/globals.css';
 import { fonts } from "../font.tsx";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,11 +21,12 @@ export default function RootLayout({
         className={`${fonts.default.className} bg-cover bg-center min-h-screen`}
         style={{
           backgroundImage: 'url(https://res.cloudinary.com/dw9rtddmt/image/upload/v1722103739/Thumbnail_2_n44vq5.png)',
-          fontFamily: fonts.default.className, // quicksand fontu font.tsx içinde tanımlandıysa
+          fontFamily: fonts.default.className, // "quicksand" fontu font.tsx içinde tanımlandıysa
         }}
       >
         <main>{children}</main>
         <Analytics />
+        <SpeedInsights /> {}
       </body>
     </html>
   );
