@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* HomePage.css */
+.bg-gray-900 {
+  background-color: #002327;
+}
+
+.text-white {
+  color: white;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+/* ... Diğer stil tanımlamalarınız ... */
+
+.text-green-500 {
+    --tw-text-opacity: 1;
+    color: rgb(0 165 121 / 63%);
+    border-radius: 15px;
+    padding: 30px;
+    top: -260px;
+}
+
+.bg-gray-700 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(16 82 86 / 49%);
+}
+
+.text-white {
+    color: #a2eaefde;
+}
+
+.bg-green-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(29 249 221 / 40%);
+}
