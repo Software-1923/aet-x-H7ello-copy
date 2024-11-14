@@ -1,8 +1,9 @@
 // src/font.tsx
 
-import '@fontsource/quicksand';
-import '@fontsource/inter';
-import '@fontsource-variable/museomoderno';
+import '@fontsource/quicksand'; 
+import '@fontsource/inter'; 
+import '@fontsource-variable/museomoderno'; 
+
 
 const fonts = {
   quicksand: "Quicksand",

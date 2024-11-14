@@ -45,10 +45,22 @@ server.use((req: Request, res: Response, next: Function) => {
 
 // CORS ve ön kontrol isteklerini işleyen middleware
 server.use((req: Request, res: Response, next: Function) => {
-  res.set('Access-Control-Allow-Origin', '*');
+  const origin = req.headers.origin;
+  const allowedOrigins = ['http://localhost:3000', 'https://aet-x-h7ello.vercel.app/'];
+
+  // origin string olduğunda
+  if (typeof origin === 'string' && allowedOrigins.includes(origin)) {
+    res.set('Access-Control-Allow-Origin', origin);
+  }
+  // origin bir array olduğunda, array'in ilk elemanını kullan
+  else if (Array.isArray(origin) && allowedOrigins.includes(origin[0])) {
+    res.set('Access-Control-Allow-Origin', origin[0]);
+  }
+
   res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-api-key');
 
+  // OPTIONS istekleri için 200 dönüşü
   if (req.method === 'OPTIONS') {
     res.sendStatus(200);
   } else {

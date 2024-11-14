@@ -43,7 +43,7 @@ export default {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          'postcss-loader',
+          'postcss-loader',  // Ensure postcss-loader is included
         ],
       },
       {
@@ -75,4 +75,3 @@ export default {
     minimize: true,
   },
 };
-

@@ -1,54 +1,48 @@
+// src/components/layout/navbar.tsx
+
 "use client";
 
-import Image from "next/image";
+import React from "react";
 import Link from "next/link";
-import useScroll from "@/lib/hooks/use-scroll";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import { LayoutDashboard } from "lucide-react";
+import { SignInButton, SignedIn, SignedOut, UserButton, ClerkProvider } from "@clerk/nextjs";
 
-export default function NavBar() {
-  const scrolled = useScroll(50);
-
+const Navbar = () => {
   return (
-    <>
-      <div
-        className={`fixed top-0 flex w-full justify-center ${
-          scrolled
-            ? "border-b border-gray-200 bg-white/50 backdrop-blur-xl"
-            : "bg-white/0"
-        } z-30 transition-all`}
-      >
-        <div className="mx-5 flex h-16 w-full max-w-screen-xl items-center justify-between">
-          <Link href="/" className="flex items-center font-display text-2xl">
-            <Image
-              src="/logo.png"
-              alt="Precedent logo"
-              width="30"
-              height="30"
-              className="mr-2 rounded-sm"
-            ></Image>
-            <p>Precedent</p>
+    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || ""}>
+      <div className="fixed top-0 left-0 right-0 z-50 bg-gray-800 text-white py-4 px-6 flex items-center">
+        
+        {/* Navbar Linkleri (Sol Kısım) */}
+        <div className="flex space-x-4">
+          <Link href="/" className="hover:bg-gray-700 px-4 py-2 rounded">
+            Dashboard
           </Link>
+          <Link href="/about" className="hover:bg-gray-700 px-4 py-2 rounded">
+            About
+          </Link>
+          <Link href="/services" className="hover:bg-gray-700 px-4 py-2 rounded">
+            Shop
+          </Link>
+          <Link href="/contact" className="hover:bg-gray-700 px-4 py-2 rounded">
+            Contact
+          </Link>
+        </div>
+
+        {/* Clerk Oturum Bileşeni (Sağda, Sağ Kenardan Uzak) */}
+        <div className="ml-auto flex items-center" style={{ marginRight: "20px" }}>
           <SignedOut>
             <SignInButton mode="modal">
-              <button className="rounded-full border border-black bg-black px-4 py-1.5 text-sm text-white transition-colors hover:bg-white hover:text-black">
-                Sign In
+              <button className="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">
+                Login
               </button>
             </SignInButton>
           </SignedOut>
           <SignedIn>
-            <UserButton>
-              <UserButton.MenuItems>
-                <UserButton.Link
-                  label="Dashboard"
-                  labelIcon={<LayoutDashboard className="h-4 w-4" />}
-                  href="/"
-                />
-              </UserButton.MenuItems>
-            </UserButton>
+            <UserButton />
           </SignedIn>
         </div>
       </div>
-    </>
+    </ClerkProvider>
   );
-}
+};
+
+export default Navbar;
