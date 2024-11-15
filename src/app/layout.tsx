@@ -2,6 +2,7 @@
 import { ClerkProvider, ClerkLoaded } from "@clerk/nextjs";
 import { Metadata } from "next";
 import "../styles/globals.css"; // Global styles
+import "../styles/sidebar.css";
 import { fonts } from "../font";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -27,7 +28,7 @@ export default function RootLayout({
             {/* NavBar component added at the top */}
             <div className="flex flex-col">
               <Navbar /> {/* Navbar component at the top */}
-              <main className="main-content mt-16">{children}</main> {/* Main content area */}
+              <main className="">{children}</main> {/* Main content area */}
             </div>
             <Analytics />
             <SpeedInsights />
