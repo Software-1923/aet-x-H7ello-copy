@@ -12,8 +12,45 @@
     flex-wrap: wrap;
     flex-direction: row;
     top: 10px;
-    align-items: stretch;
     align-content: center;
     justify-content: center;
+    overflow: hidden;
+    background: #f3f4f6;
 }
 
+.py-2 {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    color: #212121;
+    background: #dbdbdb;
+    border-radius: 40px;
+}
+
+.ml-auto.flex.items-center {
+    padding: 10px;
+}
+
+img.rounded-md.shadow-md {
+    border-radius: 10px;
+}
+
+.md\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+h1.text-4xl.md\:text-6xl.font-semibold.mb-6 {
+    color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+.space-x-4>:not([hidden])~:not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(1rem* var(--tw-space-x-reverse));
+    margin-left: calc(1rem* calc(1 - var(--tw-space-x-reverse)));
+    color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+h2 {
+    color: rgb(55 65 81 / var(--tw-text-opacity));
+}

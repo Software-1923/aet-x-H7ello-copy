@@ -18,7 +18,7 @@
     "clean": "rm -rf dist",
     "preview": "vite preview",
     "test": "mocha -r ts-node/register tests/**/*.ts",
-    "start": "npm run build && echo '\\u001b[38;5;200m⚡️\\u001b[0m Aether WEB3 CLI is starting the system!' && next start",
+    "start": "npm run build && echo '⚡️ Aether WEB3 CLI is starting the system!' && next start",
     "lint": "npx oxlint && next lint && npx eslint"
   },
   "lint-staged": {
@@ -243,7 +243,7 @@
     "uikit": "^3.21.13",
     "value": "^0.3.3",
     "vaul": "^0.9.9",
-    "viem": "^2.21.35",
+    "viem": "^2.21.45",
     "vite-tsconfig-paths": "^5.0.1",
     "wagmi": "^2.12.25",
     "web-streams-polyfill": "^4.0.0",

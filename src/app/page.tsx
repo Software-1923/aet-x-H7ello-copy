@@ -2,7 +2,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { Analytics } from "@vercel/analytics/next";
 
 export default function Home() {
@@ -18,62 +17,35 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative w-full h-screen">
-      {/* Arka Plan Resmi */}
+    <div className="relative w-full h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+      {/* Background remains gradient, image loaded but not displayed */}
       {imageUrl && (
-        <Image
+        <img
           src={imageUrl}
-          alt="Background"
-          fill
-          style={{ objectFit: "cover" }}
-          quality={100}
-          priority
+          alt="Cloudinary Image"
+          style={{ display: "none" }} // Hidden from view
         />
       )}
 
-      {/* Sayfa İçeriği */}
-      <section className="relative z-10 bg-opacity-50 bg-zinc-900 py-20">
-        <div className="w-full lg:w-9/12 mx-auto flex flex-col items-center gap-8">
-          <button
-            type="button"
-            className="text-orange-500 px-4 hover:bg-zinc-800 border border-zinc-600 rounded-full text-sm flex items-center gap-4"
-          >
-            💼 E-Commerce ⚚ - Professional - Fastest \Accessibility
-            <IconArrowRightShort height={22} width={22} />
+      {/* Main Content */}
+      <section className="relative z-10 text-center px-4">
+        <h1 className="text-4xl md:text-6xl font-semibold mb-6">
+          Explore a New Level of Product
+        </h1>
+        <p className="text-gray-300 text-lg md:text-xl mb-8 max-w-md mx-auto">
+          Just Win. 1st E-Commerce infrastructure in its field. +WEB3 +DApp
+        </p>
+        <div className="flex justify-center space-x-4">
+          <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium">
+            Pre-order Now
           </button>
-
-          <p className="text-zinc-100 w-full lg:w-9/12 text-4xl md:text-6xl text-center">
-            Aether/H7ello
-          </p>
-          <p className="text-zinc-400 md:w-7/12 text-center">
-            Turn your dreams into reality with Multi-Application Infrastructure.
-            We’re here to provide the momentum you need and save you time with
-            first-class service—a reality beyond dreams.
-          </p>
-
-          <div className="space-x-4 flex items-center">
-          </div>
+          <button className="bg-transparent border border-blue-500 hover:bg-blue-500 text-white px-6 py-3 rounded-full text-sm font-medium">
+            Learn More
+          </button>
         </div>
       </section>
 
       <Analytics />
     </div>
-  );
-}
-
-function IconArrowRightShort(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      fill="currentColor"
-      viewBox="0 0 16 16"
-      height="1em"
-      width="1em"
-      {...props}
-    >
-      <path
-        fillRule="evenodd"
-        d="M4 8a.5.5 0 01.5-.5h5.793L8.146 5.354a.5.5 0 11.708-.708l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L10.293 8.5H4.5A.5.5 0 014 8z"
-      />
-    </svg>
   );
 }
