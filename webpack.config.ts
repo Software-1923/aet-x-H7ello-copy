@@ -1,6 +1,6 @@
 import path from 'path';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import webpack from 'webpack';
+import DotenvWebpack from 'dotenv-webpack';
 
 export default {
   mode: 'production',
@@ -11,52 +11,30 @@ export default {
     clean: true,
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    mainFields: ['browser', 'module', 'main'],
   },
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'swc-loader',
-          options: {
-            sync: true,
-            jsc: {
-              parser: {
-                syntax: 'typescript',
-                tsx: true,
-              },
-              target: 'es2021',
-              transform: {
-                react: {
-                  runtime: 'automatic',
-                },
-              },
-              externalHelpers: true,
-            },
-          },
-        },
+        use: 'babel-loader',
       },
       {
         test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',  // Ensure postcss-loader is included
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              name: 'fonts/[name].[ext]',
-            },
-          },
-        ],
+        test: /\.(md|LICENSE|README.md)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/[name][ext]',
+        },
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        type: 'asset/resource',
       },
     ],
   },
@@ -64,9 +42,8 @@ export default {
     new MiniCssExtractPlugin({
       filename: 'styles.css',
     }),
-    new webpack.DefinePlugin({
-      'process.env': JSON.stringify(process.env),
-    }),
+    // Ortam değişkenlerini yüklemek için dotenv-webpack
+    new DotenvWebpack(),
   ],
   optimization: {
     splitChunks: {

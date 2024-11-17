@@ -54,3 +54,32 @@ h1.text-4xl.md\:text-6xl.font-semibold.mb-6 {
 h2 {
     color: rgb(55 65 81 / var(--tw-text-opacity));
 }
+
+.to-gray-800 {
+    --tw-gradient-to: #f3f4f6;
+}
+
+.from-gray-900 {
+    --tw-gradient-from: #f3f4f6 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(17, 24, 39, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+p.text-gray-300.text-lg.md\:text-xl.mb-8.max-w-md.mx-auto {
+    color: rgb(55 65 81 / var(--tw-text-opacity, 1));
+}
+
+.bg-teal-800 {
+    --tw-bg-opacity: 1;
+    background-color: #f3f4f6;
+}
+
+.py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    color: #191919;
+}
+
+h1.next-error-h1 {
+    color: #191919;
+}
