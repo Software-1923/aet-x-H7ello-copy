@@ -33,6 +33,9 @@
       "@/utils/*": [
         "./src/utils/*"
       ],
+      "@/db/*": [
+          "src/db/*"
+      ],
       "@/components/ui/*": [
         "./src/components/ui/*"
       ]
@@ -47,14 +50,17 @@
       "react-dom",
       "next",
       "express",
-      "axios"
+      "axios",
+      "ws"
     ],
     "allowJs": true,
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "experimentalDecorators": true,  // Dekoratörleri etkinleştir
+    "emitDecoratorMetadata": true   // Dekoratör metadatasını etkinleştir
   },
   "include": [
     "src/**/*.{ts,tsx,js,jsx}",
@@ -69,6 +75,10 @@
     "node_modules",
     "dist",
     ".next",
+    "**/*.md",
+    "./node_modules/@libsql/hrana-client/README.md",
+    "./node_modules/@libsql/hrana-client/.LICENSE",
+    "**/*.LICENSE",
     "**/*.js.map",
     "**/*.jsx.map"
   ]

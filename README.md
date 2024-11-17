@@ -54,6 +54,25 @@ Aether integrates **Arcjet Shield** for enhanced client-side security. Configure
   TURSO_AUTH_TOKEN=
   ```
 
+### 3.1 Turso Database SQL-Lite Table
+
+  Select Db-Name / Open Db Overview / Edit Data Button / Open Drizzle Studio / SQL Runner / Paste Table Code 🎫 / Run :
+
+  ```shell
+      CREATE TABLE productsTable (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      description TEXT,
+      price REAL NOT NULL,
+      stock INTEGER DEFAULT 0,
+      imageUrl TEXT,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+  ```
+  Okay, now come back to the edit products button and you can edit the product information from Outerbase and the step is below;
+  Select Db-Name / Open Db Overview / Edit Data Button / “./main” by default this folder will come under the table we have created by pressing the productsTable / Add Row button to enter the product information and save it by pressing Save and we can cancel it by pressing “Discard Changes”.
+
 ### 4. Visual Data Management
 
 - **Cloudinary Integration**
