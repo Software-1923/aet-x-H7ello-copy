@@ -1,6 +1,6 @@
 {
-  "extends": ["next/babel","next/core-web-vitals"],
+  "extends": ["next/core-web-vitals"],
   "rules": {
-    "react/no-unescaped-entities": "true"
+    "react/no-unescaped-entities": 0
   }
 }
