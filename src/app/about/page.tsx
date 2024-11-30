@@ -33,7 +33,7 @@ export default function Home() {
 
           {/* Paragraph Content */}
           <p className="text-gray-700">
-            Aether is a DApp application built on Next.js based on Web3. We are here to make a potential e-commerce revolution a reality. This app is a sample company backed by Fast Soft Inc., the app is a real-time reality.
+            Aether is a DApp application built on Next.js based on Web3. We are here to make a potential e-commerce revolution a reality. This app is a sample company backed by Hızlı Soft Inc., the app is a real-time reality.
           </p>
           <p className="text-gray-700">
             Our official website is located here:
