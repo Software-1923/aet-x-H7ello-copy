@@ -15,7 +15,7 @@
     align-content: center;
     justify-content: center;
     overflow: hidden;
-    background: #f3f4f6;
+    background: transparent;
 }
 
 .py-2 {
@@ -24,6 +24,7 @@
     color: #212121;
     background: #dbdbdb;
     border-radius: 40px;
+    margin: 2px;
 }
 
 .ml-auto.flex.items-center {
@@ -82,4 +83,39 @@ p.text-gray-300.text-lg.md\:text-xl.mb-8.max-w-md.mx-auto {
 
 h1.next-error-h1 {
     color: #191919;
+}
+
+
+nav.fixed.top-0.left-0.right-0.z-50.bg-gray-900.text-white.shadow-lg.py-4.px-6.flex.items-center.justify-between {
+    height: 10px;
+    background: #0000009c;
+    margin: 10px;
+    border: 10px;
+    align-content: center;
+    margin: auto;
+}
+
+.text-xl.font-bold.tracking-wide {
+    margin-right: auto;
+}
+
+main.container.mx-auto.py-8.px-4 {
+    margin: 10px;
+    margin-top: 30px;
+}
+
+.text-xl.font-bold.tracking-wide {
+    margin-right: auto;
+    font-size: unset;
+    font-weight: 600;
+    color: #e9e9e9;
+}
+
+.bg-gray-800.rounded-lg.p-4.shadow-md.hover\:shadow-lg.transition {
+    background: #212121;
+    border-radius: 25px;
+}
+
+img.w-full.h-40.object-cover.rounded-md.mb-4 {
+    border-radius: 15px;
 }
