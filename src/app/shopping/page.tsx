@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import "./shop.css";
 import { useUser } from "@clerk/nextjs";
 
 interface Product {
@@ -14,10 +13,10 @@ interface Product {
 const ProductCard: React.FC<Product> = ({ id, name, price, imageUrl }) => {
   const cloudinaryUrl =
     process.env.NEXT_PUBLIC_CLOUDINARY_URL ||
-    "https://res.cloudinary.com/your-cloud-name/image/upload"; // Varsayılan URL
+    "https://res.cloudinary.com/your-cloud-name/image/upload";
   const fullImageUrl = imageUrl
     ? `${cloudinaryUrl}/${imageUrl}`
-    : `${cloudinaryUrl}/fl_preserve_transparency/v1731698565/product1_mcmwzc.jpg`; // Yedek görsel
+    : `${cloudinaryUrl}/fl_preserve_transparency/v1731698565/product1_mcmwzc.jpg`;
 
   const addToCart = () => {
     const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
@@ -27,16 +26,16 @@ const ProductCard: React.FC<Product> = ({ id, name, price, imageUrl }) => {
   };
 
   return (
-    <div className="product-card bg-gray-800 rounded-lg p-4">
+    <div className="bg-gray-800 rounded-lg p-4 shadow-md hover:shadow-lg transition">
       <img
         src={fullImageUrl}
         alt={name}
-        className="w-full h-40 object-cover rounded-lg mb-4"
+        className="w-full h-40 object-cover rounded-md mb-4"
       />
       <h2 className="text-lg font-semibold text-white mb-2">{name}</h2>
       <p className="text-gray-400 text-md mb-4">{price} $</p>
       <button
-        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full font-medium text-sm transition-colors duration-200"
+        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition"
         onClick={addToCart}
       >
         Add to Cart
@@ -54,7 +53,7 @@ const ProductGrid: React.FC = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        setError(null); // Önceki hataları temizle
+        setError(null);
         const response = await fetch("/api/products");
         if (!response.ok) {
           throw new Error("Ürünler alınırken bir hata oluştu");
@@ -63,7 +62,6 @@ const ProductGrid: React.FC = () => {
         setProducts(productData);
       } catch (err: any) {
         setError(err.message);
-        console.error("Ürünler alınırken hata oluştu:", err);
       } finally {
         setLoading(false);
       }
@@ -73,11 +71,11 @@ const ProductGrid: React.FC = () => {
   }, []);
 
   return (
-    <main className="container mx-auto py-8 px-4 mt-16">
-      <h1 className="text-2xl font-semibold text-white mb-8">
+    <main className="container mx-auto py-8 px-4">
+      <h1 className="text-2xl font-semibold text-black mb-8">
         {user ? `${user.fullName} için Ürünler` : "Ürünler"}
       </h1>
-      <section className="flex flex-wrap gap-4 justify-end mx-8 mr-[clamp(2rem,10%,700px)]">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {loading ? (
           <p className="text-white">Yükleniyor...</p>
         ) : error ? (
@@ -95,7 +93,7 @@ const ProductGrid: React.FC = () => {
         ) : (
           <p className="text-white">Ürün bulunamadı.</p>
         )}
-      </section>
+      </div>
     </main>
   );
 };
