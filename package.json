@@ -235,6 +235,7 @@
     "next-cloudinary": "^6.16.0",
     "next-themes": "^0.3.0",
     "nice-color-palettes": "^4.0.0",
+    "npm": "^10.9.1",
     "openai": "^4.72.0",
     "p-queue": "^8.0.1",
     "pg": "^8.13.1",
