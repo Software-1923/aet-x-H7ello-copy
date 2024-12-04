@@ -51,17 +51,21 @@ server.use((req: Request, res: Response, next: Function) => {
 // CORS yönetimi
 server.use((req: Request, res: Response, next: Function) => {
   const origin = req.headers.origin as string | undefined;
-  const allowedOrigins = ['http://localhost:3000', 'https://aet-x-h7ello.vercel.app/'];
+  const allowedOrigins = ['http://localhost:3000', 'https://aet-x-h7ello.vercel.app', 'https://datafortress.website', 'https://animated-disco-v6vwrvwq94j5cwj9r-3000.app.github.dev'];
 
-  if (origin && allowedOrigins.includes(origin)) {
+  // Alt domain kontrolü
+  const isAllowedSubdomain = origin?.endsWith('.datafortress.website');
+
+  if (origin && (allowedOrigins.includes(origin) || isAllowedSubdomain)) {
     res.set('Access-Control-Allow-Origin', origin);
+    res.set('Access-Control-Allow-Credentials', 'true'); // Cookie kullanımı için gerekli
   }
 
   res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-api-key');
 
   if (req.method === 'OPTIONS') {
-    res.sendStatus(200);
+    res.sendStatus(200); // Preflight request'lere hızlı yanıt
   } else {
     next();
   }
