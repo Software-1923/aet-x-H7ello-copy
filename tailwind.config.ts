@@ -1,14 +1,13 @@
 import type { Config } from "tailwindcss";
-import daisyui from 'daisyui';
+import daisyui from "daisyui";
 
-// @ts-ignore bu satırdaki hatayı yok sayacaktır
 const config: Config = {
-  darkMode: 'class', // darkMode ayarını 'class' olarak bırakıyoruz.
+  darkMode: ["class"], // Hem ana hem de yan koddaki yapı destekleniyor
   content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{js,ts,jsx,tsx}',
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     container: {
@@ -20,15 +19,64 @@ const config: Config = {
     },
     extend: {
       colors: {
-        primary: "hsl(var(--primary))",
-        secondary: "hsl(var(--secondary))",
-        accent: "hsl(var(--accent))",
-        muted: "hsl(var(--muted))",
+        light: "hsl(var(--light))",
+        dark: "hsl(var(--dark))",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        toggle: "hsl(var(--toggle))",
+        bg: "hsl(var(--bg))",
+        fg: "hsl(var(--fg))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          fg: "hsl(var(--primary-fg))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          fg: "hsl(var(--secondary-fg))",
+        },
+        tertiary: {
+          DEFAULT: "hsl(var(--tertiary))",
+          fg: "hsl(var(--tertiary-fg))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          fg: "hsl(var(--accent-fg))",
+          subtle: "hsl(var(--accent-subtle))",
+          "subtle-fg": "hsl(var(--accent-subtle-fg))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          fg: "hsl(var(--success-fg))",
+        },
+        info: {
+          DEFAULT: "hsl(var(--info))",
+          fg: "hsl(var(--info-fg))",
+        },
+        danger: {
+          DEFAULT: "hsl(var(--danger))",
+          fg: "hsl(var(--danger-fg))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          fg: "hsl(var(--warning-fg))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          fg: "hsl(var(--muted-fg))",
+        },
+        overlay: {
+          DEFAULT: "hsl(var(--overlay))",
+          fg: "hsl(var(--overlay-fg))",
+        },
       },
       borderRadius: {
-        lg: "var(--radius)",
+        "3xl": "calc(var(--radius) + 7.5px)",
+        "2xl": "calc(var(--radius) + 5px)",
+        xl: "calc(var(--radius) + 2.5px)",
+        lg: "calc(var(--radius))",
         md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        sm: "calc(var(--radius) - 5px)",
       },
       keyframes: {
         "accordion-down": {
@@ -48,18 +96,46 @@ const config: Config = {
   },
   daisyui: {
     themes: [
-      "light", "dark", "cupcake", "bumblebee", "emerald", "corporate", "synthwave", 
-      "retro", "cyberpunk", "valentine", "halloween", "garden", "forest", "aqua", 
-      "lofi", "pastel", "fantasy", "wireframe", "black", "luxury", "dracula", 
-      "cmyk", "autumn", "business", "acid", "lemonade", "night", "coffee", 
-      "winter", "dim", "nord", "sunset",
+      "light",
+      "dark",
+      "cupcake",
+      "bumblebee",
+      "emerald",
+      "corporate",
+      "synthwave",
+      "retro",
+      "cyberpunk",
+      "valentine",
+      "halloween",
+      "garden",
+      "forest",
+      "aqua",
+      "lofi",
+      "pastel",
+      "fantasy",
+      "wireframe",
+      "black",
+      "luxury",
+      "dracula",
+      "cmyk",
+      "autumn",
+      "business",
+      "acid",
+      "lemonade",
+      "night",
+      "coffee",
+      "winter",
+      "dim",
+      "nord",
+      "sunset",
     ],
   },
   plugins: [
     require("tailwindcss-animate"),
     require("@tailwindcss/typography"),
-    daisyui,
     require("@tailwindcss/forms"),
+    require("tailwindcss-react-aria-components"),
+    daisyui,
   ],
 };
 

@@ -12,6 +12,9 @@ export default {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
     mainFields: ['browser', 'module', 'main'],
   },
   module: {
@@ -19,22 +22,23 @@ export default {
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
+          },
+        },
       },
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
       {
-        test: /\.(md|LICENSE|README.md)$/,
+        test: /\.(png|jpg|jpeg|gif|svg|md|LICENSE|README.md)$/,
         type: 'asset/resource',
         generator: {
           filename: 'assets/[name][ext]',
         },
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/,
-        type: 'asset/resource',
       },
     ],
   },
@@ -42,7 +46,6 @@ export default {
     new MiniCssExtractPlugin({
       filename: 'styles.css',
     }),
-    // Ortam değişkenlerini yüklemek için dotenv-webpack
     new DotenvWebpack(),
   ],
   optimization: {
