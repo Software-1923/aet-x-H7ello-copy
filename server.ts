@@ -51,7 +51,7 @@ server.use((req: Request, res: Response, next: Function) => {
 // CORS yönetimi
 server.use((req: Request, res: Response, next: Function) => {
   const origin = req.headers.origin as string | undefined;
-  const allowedOrigins = ['http://localhost:3000', 'https://aet-x-h7ello.vercel.app', 'https://datafortress.website', 'https://www.datafortress.website', 'https://clerk.datafortress.website/npm/@clerk/clerk-js@5/dist/clerk.browser.js', 'https://aet-x-h7ello-goldj36oe-webs-projects-4ddef413.vercel.app'];
+  const allowedOrigins = ['http://localhost:3000', 'https://aet-x-h7ello.vercel.app', 'https://datafortress.website', 'https://www.datafortress.website', 'https://clerk.datafortress.website/npm/@clerk/clerk-js@5/dist/clerk.browser.js', 'https://aet-x-h7ello-goldj36oe-webs-projects-4ddef413.vercel.app', 'https://clerk.datafortress.website'];
 
   // Alt domain kontrolü
   const isAllowedSubdomain = origin?.endsWith('.datafortress.website');
