@@ -1,8 +1,6 @@
 import express, { Request, Response } from 'express';
 import axios from 'axios';
 import expressWs from 'express-ws';
-import { WebSocketServer } from 'ws';
-import type { WebSocket } from 'ws'; 
 import path from 'path';
 import fs from 'fs';
 import dotenv from 'dotenv';
@@ -26,8 +24,7 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const wsInstance = expressWs(express());
-const server = wsInstance.app; // express-ws, Express uygulamasını genişletiyor
-
+const server = wsInstance.app; // express-ws genişletilmiş uygulama
 
 const PORT = process.env.PORT || 3000;
 const ethereumProviderUrl = process.env.API_INFURA_URL || 'https://mainnet.infura.io/v3/api';
@@ -41,35 +38,44 @@ server.use(express.json());
 
 // Güvenlik başlıkları
 server.use((req: Request, res: Response, next: Function) => {
-  res.set('Cache-Control', 'public, max-age=0, must-revalidate');
-  res.set('X-Content-Type-Options', 'nosniff');
-  res.set('X-Frame-Options', 'DENY');
-  res.set('X-XSS-Protection', '1; mode=block');
+  res.set('Cache-Control', 'public, max-age=0, must-revalidate'); // Önbellekleme kontrolü
+  res.set('X-Content-Type-Options', 'nosniff'); // MIME tipi kontrolü
+  res.set('X-Frame-Options', 'DENY'); // iframe koruması
+  res.set('X-XSS-Protection', '1; mode=block'); // XSS koruması
   next();
 });
 
 // CORS yönetimi
 server.use((req: Request, res: Response, next: Function) => {
   const origin = req.headers.origin as string | undefined;
-  const allowedOrigins = ['http://localhost:3000', 'https://aet-x-h7ello.vercel.app', 'https://datafortress.website', 'https://www.datafortress.website', 'https://clerk.datafortress.website/npm/@clerk/clerk-js@5/dist/clerk.browser.js', 'https://aet-x-h7ello-goldj36oe-webs-projects-4ddef413.vercel.app', 'https://clerk.datafortress.website'];
+  const allowedOrigins = [
+    'http://localhost:3000',
+    'https://aet-x-h7ello.vercel.app',
+    'https://datafortress.website',
+    'https://www.datafortress.website',
+    'https://clerk.datafortress.website',
+  ];
 
-  // Alt domain kontrolü
-  const isAllowedSubdomain = origin?.endsWith('.datafortress.website');
+  const isAllowedSubdomain = origin?.endsWith('.datafortress.website'); // Alt domain kontrolü
 
   if (origin && (allowedOrigins.includes(origin) || isAllowedSubdomain)) {
-    res.set('Access-Control-Allow-Origin', origin);
-    res.set('Access-Control-Allow-Credentials', 'true'); // Cookie kullanımı için gerekli
+    res.set('Access-Control-Allow-Origin', origin); // Dinamik izin
+    res.set('Access-Control-Allow-Credentials', 'true'); // Çerezlere izin
   }
 
-  res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-api-key');
+  res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // HTTP yöntemleri
+  res.set(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, x-api-key'
+  ); // İzinli başlıklar
 
   if (req.method === 'OPTIONS') {
-    res.sendStatus(200); // Preflight request'lere hızlı yanıt
+    res.sendStatus(200); // Preflight isteği yanıtı
   } else {
     next();
   }
 });
+
 
 // WebSocket rotası
 server.ws('/web3', (ws, req) => {
@@ -78,7 +84,7 @@ server.ws('/web3', (ws, req) => {
   ws.on('message', async (message) => {
     console.log(`Message received: ${message}`);
     try {
-      const accounts = await provider.listAccounts(); // Web3 sağlayıcısından hesapları al
+      const accounts = await provider.listAccounts();
       ws.send(`Connected accounts: ${accounts.join(', ')}`);
     } catch (error) {
       console.error('WebSocket error:', error);
@@ -130,52 +136,6 @@ server.get('/web3-info', async (req: Request, res: Response) => {
     res.status(500).send('Error during Web3 interaction');
   }
 });
-
-// Blok kök hash permütasyonları ve Luhn doğrulaması
-server.get('/block-permutations/:blockNumber', async (req: Request, res: Response) => {
-  const blockNumber = parseInt(req.params.blockNumber, 10);
-
-  if (isNaN(blockNumber)) {
-    return res.status(400).send('Invalid block number.');
-  }
-
-  try {
-    const result = await getBlockRootPermutations(blockNumber);
-    res.json(result);
-  } catch (error) {
-    console.error('Error fetching block data:', error);
-    res.status(500).send('Error fetching block data');
-  }
-});
-
-async function getBlockRootPermutations(blockNumber: number) {
-  const block = await web3.eth.getBlock(blockNumber);
-  if (!block) throw new Error('Block not found.');
-
-  const rootHash = block.hash || '';
-  const permutations = generatePermutations(rootHash);
-  const luhnValid = validateLuhn(permutations[0]);
-
-  return { rootHash, permutations, luhnValid };
-}
-
-function generatePermutations(hash: string): string[] {
-  return Array.from({ length: hash.length }, (_, i) =>
-    crypto.createHash('sha256').update(hash + i).digest('hex')
-  );
-}
-
-function validateLuhn(number: string): boolean {
-  let sum = 0;
-  let alternate = false;
-  for (let i = number.length - 1; i >= 0; i--) {
-    let n = parseInt(number[i], 10);
-    if (alternate) n = n * 2 > 9 ? n * 2 - 9 : n * 2;
-    sum += n;
-    alternate = !alternate;
-  }
-  return sum % 10 === 0;
-}
 
 // Ürünler API
 server.get('/api/products', async (req: Request, res: Response) => {
