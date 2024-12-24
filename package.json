@@ -235,7 +235,7 @@
     "mongodb-memory-server": "^10.1.2",
     "mongoose": "^7.8.2",
     "motion-number": "^0.1.7",
-    "next": "^15.0.4",
+    "next": "^15.1.2",
     "next-cloudinary": "^6.16.0",
     "next-themes": "^0.3.0",
     "nice-color-palettes": "^4.0.0",
