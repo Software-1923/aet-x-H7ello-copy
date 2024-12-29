@@ -63,7 +63,8 @@ server.use((req: Request, res: Response, next: Function) => {
     'https://aet-x-h7ello.vercel.app',
     'https://datafortress.website',
     'https://www.datafortress.website',
-    'https://clerk'
+    'https://clerk.datafortress.website',
+    'https://clerk.datafortress.website/npm/@clerk/clerk-js@5/dist/clerk.browser.js'
   ];
 
   if (origin && (allowedOrigins.includes(origin) || origin.endsWith('.datafortress.website'))) {
