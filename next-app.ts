@@ -18,6 +18,7 @@ const whitelistFiles = [
   '.swcrc',
   'next.config.ts',
   'vite.config.ts',
+  'middleware.ts',
   './src/**/*.{js,ts,jsx,tsx}'
 ];
 

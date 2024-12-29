@@ -1,7 +1,7 @@
 {
   "name": "aetherweb3content",
   "version": "1.0.0",
-  "packageManager": "npm@10.9.1",
+  "packageManager": "npm@11.0.0",
   "description": "Aether Web3 DApp",
   "private": true,
   "type": "module",
@@ -69,7 +69,7 @@
     "@better-fetch/logger": "^1.1.3",
     "@clerk/clerk-react": "^5.15.3",
     "@clerk/clerk-sdk-node": "^5.1.4",
-    "@clerk/nextjs": "^6.3.2",
+    "@clerk/nextjs": "^6.9.6",
     "@cloudinary/react": "^1.13.0",
     "@cloudinary/url-gen": "^1.21.0",
     "@emotion/react": "^11.13.0",
