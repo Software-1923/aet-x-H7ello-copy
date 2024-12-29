@@ -61,6 +61,7 @@ server.use((req: Request, res: Response, next: Function) => {
   const allowedOrigins = [
     'http://localhost:3000',
     'https://aet-x-h7ello.vercel.app',
+    'aet-x-copy.vercel.app',
     'https://datafortress.website',
     'https://www.datafortress.website',
     'https://clerk.datafortress.website',
